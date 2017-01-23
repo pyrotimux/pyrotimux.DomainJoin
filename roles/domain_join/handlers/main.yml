@@ -1,0 +1,5 @@
+---
+  - name: Reboot Server
+    win_reboot:
+      shutdown_timeout_sec: 600
+      reboot_timeout_sec: 600

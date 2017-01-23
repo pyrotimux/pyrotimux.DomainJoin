@@ -1,0 +1,8 @@
+---
+  # Domain Vars
+  ps_domainname: "pyro.testrealm.local"
+  ps_ad_user: "pyro\\ichiban"
+  ps_ad_pass: "ichiV@gran7"
+  ps_iface:
+    - { name: 'Ethernet', dns: '10.255.10.20' }
+    - { name: 'Ethernet 2', dns: '10.255.10.20' }

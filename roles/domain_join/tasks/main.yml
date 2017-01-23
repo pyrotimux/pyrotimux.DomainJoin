@@ -1,0 +1,41 @@
+---
+  - name: Make sure the LCM refresh mode is disabled
+    win_lcm5:
+      refresh_mode: "Disabled"
+    tags:
+      - Config
+
+  - name: Download xNetworking
+    win_oneget:
+            name: "xNetworking"
+    tags:
+      - Oneget
+
+  - name: Download xComputerManagement
+    win_oneget:
+            name: "xComputerManagement"
+    tags:
+      - Oneget
+
+  - name: Change DNS Address
+    win_pc_xdnsserveraddress:
+      Address: "{{ item.dns }}"
+      InterfaceAlias: "{{ item.name }}"
+      AddressFamily: "IPv4"
+    with_items: "{{ ps_iface }}"
+
+  - name: Rename and Join Domain
+    win_pc_xcomputer:
+      Name: "{{ ps_domain_dict[inventory_hostname] }}"
+      DomainName: "{{ ps_domainname }}"
+      Credential_username: "{{ ps_ad_user }}"
+      Credential_password: "{{ ps_ad_pass }}"
+    register: result
+    until: result|success
+    retries: 2
+    delay: 10
+    tags:
+      - CompInit
+    notify:
+      - Reboot Server
+  - meta: flush_handlers

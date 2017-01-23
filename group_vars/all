@@ -1,0 +1,17 @@
+---
+  # may be we dynamically generate this files.
+  ps_users:
+    - { name: 'ichiban', pass: 'ichiV@gran7' }
+    - { name: 'niban', pass: 'niV@gran7' }
+    - { name: 'sanban', pass: 'sanV@gran7'}
+    - { name: 'yonban', pass: 'yonV@gran7'}
+
+  ps_server_dict:
+    - { server: "Active Directory", ip: "10.255.10.20" }
+    - { server: "Storage Server", ip: "10.255.10.21" }
+    - { server: "Terminal Server 1", ip: "10.255.10.22" }
+    - { server: "Terminal Server 2", ip: "10.255.10.23" }
+
+  ps_domain_dict: {"10.255.10.20":"KGAD", "10.255.10.21":"KGSTRGUTL", "10.255.10.22":"KGTS1", "10.255.10.23":"KGTS2"}
+
+  file_server: KGSTRGUTL
