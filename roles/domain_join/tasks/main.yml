@@ -22,14 +22,14 @@
       Address: "{{ item.dns }}"
       InterfaceAlias: "{{ item.name }}"
       AddressFamily: "IPv4"
-    with_items: "{{ ps_iface }}"
+    with_items: "{{ iface }}"
 
   - name: Rename and Join Domain
     win_pc_xcomputer:
-      Name: "{{ ps_domain_dict[inventory_hostname] }}"
-      DomainName: "{{ ps_domainname }}"
-      Credential_username: "{{ ps_ad_user }}"
-      Credential_password: "{{ ps_ad_pass }}"
+      Name: "{{ domain_dict[inventory_hostname] }}"
+      DomainName: "{{ domainname }}"
+      Credential_username: "{{ ad_user }}"
+      Credential_password: "{{ ad_pass }}"
     register: result
     until: result|success
     retries: 2
