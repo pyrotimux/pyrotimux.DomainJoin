@@ -1,8 +1,0 @@
----
-  # Domain Vars
-  domainname: "pyro.testrealm.local"
-  ad_user: "pyro\\ichiban"
-  ad_pass: "ichiV@gran7"
-  iface:
-    - { name: 'Ethernet', dns: '10.255.10.20' }
-    - { name: 'Ethernet 2', dns: '10.255.10.20' }

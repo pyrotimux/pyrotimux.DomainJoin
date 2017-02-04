@@ -1,3 +1,0 @@
----
-  # may be we dynamically generate this files.
-  domain_dict: {"10.255.10.20":"KGAD", "10.255.10.21":"KGSTRGUTL", "10.255.10.22":"KGTS1", "10.255.10.23":"KGTS2"}
