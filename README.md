@@ -1,6 +1,6 @@
 DomainJoin
 =========
-[![Build Status](https://travis-ci.org/pyrotimux/domain_join.png?branch=master)](https://travis-ci.org/pyrotimux/domain_join)
+[![Build Status](https://travis-ci.org/pyrotimux/pyrotimux.DomainJoin.png?branch=master)](https://travis-ci.org/pyrotimux/pyrotimux.DomainJoin)
 
 Join windows domain.
 
