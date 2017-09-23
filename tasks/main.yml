@@ -5,40 +5,39 @@
     tags:
       - Config
 
-  - name: Download xActiveDirectory
-    win_oneget:
-      name: "xActiveDirectory"
-    tags:
-      - Oneget
-
   - name: Download xNetworking
     win_oneget:
-      name: "xNetworking"
+            name: "xNetworking"
     tags:
       - Oneget
 
-  - name: Install ADDS and RSAT
-    win_feature:
-      name: "AD-Domain-Services,RSAT-AD-Tools"
+  - name: Download xComputerManagement
+    win_oneget:
+            name: "xComputerManagement"
     tags:
-      - WindowsFeature
+      - Oneget
 
-  - name: Init Domain
+  - name: Change DNS Address
     win_dsc:
-      resource_name: xADDomain
+      resource_name: xDnsServerAddress
+      Address: "{{ item.dns }}"
+      InterfaceAlias: "{{ item.name }}"
+      AddressFamily: "IPv4"
+    with_items: "{{ iface }}"
+
+  - name: Rename and Join Domain
+    win_dsc:
+      resource_name: xComputer
+      Name: "{{ domain_dict[inventory_hostname] }}"
       DomainName: "{{ domainname }}"
-      DomainNetbiosName: "{{ domainnetbios }}"
-      DomainAdministratorCredential_username: "{{ domainadmin_user }}"
-      DomainAdministratorCredential_password: "{{ domainadmin_pass }}"
-      SafemodeAdministratorPassword_username: "{{ safemodeadmin_user }}"
-      SafemodeAdministratorPassword_password: "{{ safemodeadmin_pass }}"
+      Credential_username: "{{ ad_user }}"
+      Credential_password: "{{ ad_pass }}"
+    register: result
+    until: result|success
+    retries: 2
+    delay: 10
     tags:
-      - DomainInit
+      - CompInit
     notify:
       - Reboot Server
-
-  # wait for all the services to load before adding and promoting users.
   - meta: flush_handlers
-  - name: Pause for a min
-    pause:
-      minutes: 1

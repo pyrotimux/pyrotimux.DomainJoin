@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# (c) 2015, Trond Hindenes <trond@hindenes.com>, and others
+# <COPYRIGHT>
+# <CODEGENMETA>
 #
 # This file is part of Ansible
 #
@@ -23,26 +24,23 @@
 
 DOCUMENTATION = '''
 ---
-module: win_oneget
-version_added: "1.8"
-short_description: Install packages using the OneGet package manager
+module: win_pc_xdnsserveraddress
+version_added: 
+short_description: 
 description:
-     
+     - 
 options:
-  refresh_mode:
+  AutoInstallModule:
     description:
-      - The desired refresh mode. Valid options are "Disabled", "Push", "Pull"
-    required: true
-    default: null
+      - If true, the required dsc resource/module will be auto-installed using the Powershell package manager
+    required: False
+    default: false
     aliases: []
-
-author: Trond Hindenes
-'''
-
-EXAMPLES = '''
-# Playbook example
-  - name: Install Chocolatey
-    win_oneget:
-      name: "Chocolatey"
-'''
-
+    choices:      - true      - false
+  AutoConfigureLcm:
+    description:
+      - If true, LCM will be auto-configured for directly invoking DSC resources (which is a one-time requirement for Ansible DSC modules)
+    required: False
+    default: false
+    aliases: []
+    choices:      - true      - false
