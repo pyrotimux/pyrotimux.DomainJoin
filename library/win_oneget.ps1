@@ -23,9 +23,7 @@
 Set-StrictMode -Off
 
 $params = Parse-Args $args;
-$result = @{
-	changed = $false
-}
+$result = New-Object psobject;
 Set-Attr $result "changed" $false;
 
 
@@ -68,7 +66,7 @@ foreach ($package in $packages)
         }
 
         Set-Attr $result "changed" $true;
-
+    
     }
 
 

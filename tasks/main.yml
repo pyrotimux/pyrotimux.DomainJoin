@@ -33,7 +33,7 @@
       Credential_username: "{{ ad_user }}"
       Credential_password: "{{ ad_pass }}"
     register: result
-    until: result|success
+    until: result is success
     retries: 2
     delay: 10
     tags:

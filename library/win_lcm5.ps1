@@ -23,9 +23,7 @@
 Set-StrictMode -Off
 
 $params = Parse-Args $args;
-$result = @{
-	changed = $false
-}
+$result = New-Object psobject;
 Set-Attr $result "changed" $false;
 
 
@@ -55,12 +53,12 @@ Else
     {
         meta
         Set-DscLocalConfigurationManager -Path .\Meta  -ErrorAction Stop -ErrorVariable lcmerror
-
+    
     }
     Catch
     {
     }
-
+    
 }
 
 #Reread the setting
@@ -73,3 +71,4 @@ if ($CurrentRefreshMode -eq $RefreshMode)
     set-attr -obj $result -name "refresh_mode" -value $RefreshMode
     Exit-Json -obj $result
 }
+
